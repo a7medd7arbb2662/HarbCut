@@ -3,11 +3,11 @@ from PyQt6.QtGui import QFont
 from PyQt6.QtCore import Qt
 from qdarkstyle import load_stylesheet
 import os
-from networking.diverter import ElmoDivert
-from tools.utils_gui import import_settings, export_settings, get_settings, \
+from networking.diverter import HarbDivert
+from hctools.utils_gui import import_settings, export_settings, get_settings, \
                             add_to_startup, remove_from_startup, set_settings, restart_gui_app
-from tools.qtools import MsgType, Buttons
-from tools.utils import get_ifaces, get_default_iface, get_iface_by_name
+from hctools.qtools import MsgType, Buttons
+from hctools.utils import get_ifaces, get_default_iface, get_iface_by_name
 
 from ui.ui_settings import Ui_MainWindow
 
@@ -16,9 +16,9 @@ from networking.nicknames import Nicknames
 from constants import *
 
 class Settings(QMainWindow, Ui_MainWindow):
-    def __init__(self, elmocut, icon):
+    def __init__(self, harbcut, icon):
         super().__init__()
-        self.elmocut = elmocut
+        self.harbcut = harbcut
 
         # Setup UI
         self.icon = icon
@@ -52,7 +52,7 @@ class Settings(QMainWindow, Ui_MainWindow):
         iface         =  self.comboInterface.currentText()
         is_ip_forward =  self.chkIpForwarding.isChecked()
 
-        exe_path = os.path.join(os.getcwd(), 'elmocut.exe')
+        exe_path = os.path.join(os.getcwd(), 'harbcut.exe')
         if is_autostart:
             add_to_startup(exe_path)
         else:
@@ -61,7 +61,7 @@ class Settings(QMainWindow, Ui_MainWindow):
         # Make sure that real-time killed devices are included
         # If its user's first time to apply remember option
         killed_from_json = get_settings('killed')
-        killed_from_elmo = list(self.elmocut.killer.killed)
+        killed_from_elmo = list(self.harbcut.killer.killed)
         killed_all = list(set(killed_from_json + killed_from_elmo)) * is_remember
 
         old_ip_forward = get_settings('ip_forwarding')
@@ -82,16 +82,16 @@ class Settings(QMainWindow, Ui_MainWindow):
             ]
         )
 
-        old_iface = self.elmocut.scanner.iface.name
+        old_iface = self.harbcut.scanner.iface.name
         
-        self.elmocut.iface = get_iface_by_name(iface)
+        self.harbcut.iface = get_iface_by_name(iface)
         self.updateElmocutSettings()
         # Fix horizontal headerfont reverts to normal after applying settings
-        self.elmocut.tableScan.horizontalHeader().setFont(QFont('Consolas', 11))
+        self.harbcut.tableScan.horizontalHeader().setFont(QFont('Consolas', 11))
 
         if is_ip_forward and not old_ip_forward:
-            ElmoDivert.enable_ip_forwarding(self.elmocut.scanner.iface.name)
-            self.elmocut.killer.unkill_all()
+            HarbDivert.enable_ip_forwarding(self.harbcut.scanner.iface.name)
+            self.harbcut.killer.unkill_all()
             set_settings('killed', [])
 
             MsgType.INFO(
@@ -100,16 +100,16 @@ class Settings(QMainWindow, Ui_MainWindow):
                 'IP forwarding has been enabled.\n'
                 'Killing devices will no longer be effective, and all '
                 'previously killed devices have been unkilled.\n\n'
-                'elmoCut needs to restart to apply this change.\n'
+                'HarbCut needs to restart to apply this change.\n'
                 'If it still does not take effect, please restart your PC.'
             )
-            restart_gui_app(self.elmocut)
-            self.elmocut.quit_all()
+            restart_gui_app(self.harbcut)
+            self.harbcut.quit_all()
             return
 
         if not is_ip_forward and old_ip_forward:
-            ElmoDivert.disable_ip_forwarding(self.elmocut.scanner.iface.name)
-            self.elmocut.stop_all_watching()
+            HarbDivert.disable_ip_forwarding(self.harbcut.scanner.iface.name)
+            self.harbcut.stop_all_watching()
 
             MsgType.INFO(
                 self,
@@ -117,11 +117,11 @@ class Settings(QMainWindow, Ui_MainWindow):
                 'IP forwarding has been disabled.\n'
                 'URL watching will no longer be effective, and all '
                 'currently watched devices have been stopped.\n\n'
-                'elmoCut needs to restart to apply this change.\n'
+                'HarbCut needs to restart to apply this change.\n'
                 'If it still does not take effect, please restart your PC.'
             )
-            restart_gui_app(self.elmocut)
-            self.elmocut.quit_all()
+            restart_gui_app(self.harbcut)
+            self.harbcut.quit_all()
             return
 
         if not silent_apply:
@@ -135,12 +135,12 @@ class Settings(QMainWindow, Ui_MainWindow):
             MsgType.INFO(
                 self,
                 'Interface Changed',
-                'elmoCut will restart to apply new interface.'
+                'HarbCut will restart to apply new interface.'
             )
 
-            # Restart elmoCut via restart.exe
-            restart_gui_app(self.elmocut)
-            self.elmocut.quit_all()
+            # Restart HarbCut via restart.exe
+            restart_gui_app(self.harbcut)
+            self.harbcut.quit_all()
         
         self.close()
 
@@ -176,18 +176,18 @@ class Settings(QMainWindow, Ui_MainWindow):
         s = import_settings()
         self.currentSettings()
         
-        self.elmocut.minimize = s['minimized']
-        self.elmocut.remember = s['remember']
-        self.elmocut.autoupdate = s['autoupdate']
-        self.elmocut.ip_forwarding_enabled = s['ip_forwarding']
-        self.elmocut.scanner.device_count = s['count']
-        self.elmocut.scanner.max_threads = s['threads']
+        self.harbcut.minimize = False # Force to NOT minimize
+        self.harbcut.remember = s['remember']
+        self.harbcut.autoupdate = s['autoupdate']
+        self.harbcut.ip_forwarding_enabled = s['ip_forwarding']
+        self.harbcut.scanner.device_count = s['count']
+        self.harbcut.scanner.max_threads = s['threads']
         
-        self.elmocut.scanner.iface = get_iface_by_name(s['iface'])
-        self.elmocut.killer.iface = get_iface_by_name(s['iface'])
+        self.harbcut.scanner.iface = get_iface_by_name(s['iface'])
+        self.harbcut.killer.iface = get_iface_by_name(s['iface'])
         
-        self.elmocut.setStyleSheet(self.styleSheet())
-        self.elmocut.about_window.setStyleSheet(self.styleSheet())
+        self.harbcut.setStyleSheet(self.styleSheet())
+        self.harbcut.about_window.setStyleSheet(self.styleSheet())
 
     def currentSettings(self):
         s = import_settings()
@@ -212,8 +212,8 @@ class Settings(QMainWindow, Ui_MainWindow):
         self.setStyleSheet(load_stylesheet() if s['dark'] else '')
     
     def checkUpdate(self):
-        self.elmocut.update_thread.prompt_if_latest = True
-        self.elmocut.update_thread.start()
+        self.harbcut.update_thread.prompt_if_latest = True
+        self.harbcut.update_thread.start()
     
     def loadInterfaces(self):
         self.comboInterface.clear()

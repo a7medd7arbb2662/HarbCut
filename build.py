@@ -15,11 +15,11 @@ VSVersionInfo(
       [
       StringTable(
         u'040904B0',
-        [StringStruct(u'CompanyName', u'elmoiv Apps'),
+        [StringStruct(u'CompanyName', u'a7medd7arbb2662 Apps'),
         StringStruct(u'FileDescription', u'{2}'),
         StringStruct(u'FileVersion', u'{0}'),
         StringStruct(u'InternalName', u'{2}'),
-        StringStruct(u'LegalCopyright', u'Khaled El-Morshedy (elmoiv) 2015-2021'),
+        StringStruct(u'LegalCopyright', u'Ahmed Harb (a7medd7arbb2662) 2015-2021'),
         StringStruct(u'OriginalFilename', u'{2}.exe'),
         StringStruct(u'ProductName', u'{2}'),
         StringStruct(u'ProductVersion', u'{0}')])
@@ -37,7 +37,7 @@ block_cipher = None
 a = Analysis(['{0}src\\\\{5}.py'],
              pathex=['{0}{5}'],
              binaries=[],
-             datas=[],
+             datas=[('exe/manuf', 'manuf')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -77,8 +77,8 @@ coll = COLLECT(exe,
 
 iss_file = '''#define MyAppName "{3}"
 #define MyAppVersion "{1}"
-#define MyAppPublisher "elmoiv"
-#define MyAppURL "https://elmoiv.github.io/"
+#define MyAppPublisher "a7medd7arbb2662"
+#define MyAppURL "https://a7medd7arbb2662.github.io/"
 #define MyAppExeName "{3}.exe"
 
 [Setup]
@@ -132,10 +132,10 @@ excluded_upx = ['qwindows.dll', 'qsvgicon.dll', 'qxdgdesktopportal.dll', 'qwindo
 
 excluded_modules = ['tk', 'tcl', '_tkinter', 'tkinter', 'Tkinter', 'FixTk', 'PIL', 'tk', 'tcl', '_tkinter', 'tkinter', 'Tkinter', 'FixTk', 'matplotlib', 'IPython', 'scipy', 'eel', 'jedi', 'win32com', 'numpy', 'wcwidth', 'win32wnet', '_asyncio', '_bz2', '_decimal', '_hashlib', '_lzma', '_multiprocessing', '_win32sysloader', '_cffi_backend', '_openssl', 'cryptography', 'docutils', 'PyQt5', 'QtOpenGL', 'QtOpenGLWidgets']
 
-is_gui = not bool(input('Press Enter for GUI, or anything for Console: '))
-app_name = 'elmoCut'
+is_gui = True
+app_name = 'HarbCut'
 app_guid = '31430AA0-C0A7-4598-991B-E3B2CD961817'
-version = input('Enter version: ')
+version = '1.1.1'
 
 try:
     sum(map(int, version.split('.')))
@@ -200,8 +200,8 @@ platforms_dlls = app_path + 'PyQt6\\Qt6\\plugins\\platforms\\'
 bin_dlls = app_path + 'PyQt6\\Qt6\\bin\\'
 pyd_dlls = app_path + 'PyQt6\\'
 
-## Kill elmocut in case was running from old output folder
-os.system('taskkill /f /im elmoCut.exe')
+## Kill harbcut in case was running from old output folder
+os.system('taskkill /f /im HarbCut.exe')
 
 ## Remove previous builds
 if os.path.exists(app_path):
@@ -286,4 +286,4 @@ os.remove('tmp.iss')
 end = time.time()
 
 print('>>> Finished in', int(end - start), 'seconds')
-input('\nSee your files at "output\\"')
+print('\nSee your files at "output\\"')

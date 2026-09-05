@@ -41,7 +41,7 @@ class UpdateThread(QThread):
         self.prompt_if_latest = True
         self.github_version = 'None'
         self.check_failed = False
-        self.url = 'https://github.com/elmoiv/elmocut/releases/latest'
+        self.url = 'https://github.com/a7medd7arbb2662/harbcut/releases/latest'
 
     def run(self):
         self.check_failed = False

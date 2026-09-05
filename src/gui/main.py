@@ -13,11 +13,11 @@ from gui.device import DeviceWindow
 
 from networking.scanner import Scanner
 from networking.killer import Killer
-from networking.diverter import ElmoDivert
+from networking.diverter import HarbDivert
 
-from tools.qtools import colored_item, MsgType, Buttons, clickable
-from tools.utils_gui import set_settings, get_settings, restart_gui_app
-from tools.utils import goto, is_connected
+from hctools.qtools import colored_item, MsgType, Buttons, clickable
+from hctools.utils_gui import set_settings, get_settings, restart_gui_app
+from hctools.utils import goto, is_connected
 
 from assets import *
 
@@ -36,23 +36,29 @@ def force_close():
     except:
         sys.exit(0)
 
-class ElmoCut(QMainWindow, Ui_MainWindow):
+class HarbCut(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
+        print("HarbCut __init__ started")
         self.icon = self.processIcon(app_icon)
+        print("Icon processed")
 
         # Add window icon
         self.setWindowIcon(self.icon)
+        print("Window icon set")
+        
         self.setupUi(self)
+        print("UI setup done")
         self.setStyleSheet(load_stylesheet())
+        print("Stylesheet set")
         
         # Main Props
-        self.watched_devices: dict[str, ElmoDivert] = {}
+        self.watched_devices: dict[str, HarbDivert] = {}
         self.scanner = Scanner(self)
         self.killer = Killer()
 
         # Settings props
-        self.minimize = True
+        self.minimize = False
         self.remember = False
         self.autoupdate = True
         self.ip_forwarding_enabled = False
@@ -63,14 +69,20 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         self.scan_thread = ScanThread()
         self.scan_thread.thread_finished.connect(self.ScanThread_Reciever)
         self.scan_thread.progress.connect(self.pgbar.setValue)
-
+        
         self.update_thread = UpdateThread()
         self.update_thread.thread_finished.connect(self.UpdateThread_Reciever)
+        
+        print("Initializing sub-windows...")
         
         # Initialize other sub-windows
         self.settings_window = Settings(self, self.icon)
         self.about_window = About(self, self.icon)
         self.device_windows: dict[str, DeviceWindow] = {}
+        
+        self.show()
+        self.raise_()
+        self.activateWindow()
 
         # Connect buttons
         self.buttons = [
@@ -80,8 +92,8 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
             (self.btnUnkill,     self.unkill,        unkill_icon,     'Un-kill selected device'),
             (self.btnKillAll,    self.killAll,       killall_icon,    'Kill all devices'),
             (self.btnUnkillAll,  self.unkillAll,     unkillall_icon,  'Un-kill all devices'),
-            (self.btnSettings,   self.openSettings,  settings_icon,   'View elmoCut settings'),
-            (self.btnAbout,      self.openAbout,     about_icon,      'About elmoCut')
+            (self.btnSettings,   self.openSettings,  settings_icon,   'View HarbCut settings'),
+            (self.btnAbout,      self.openAbout,     about_icon,      'About HarbCut')
         ] 
         
         for btn, btn_func, btn_icon, btn_tip in self.buttons:
@@ -130,7 +142,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         
         self.tray_icon = QSystemTrayIcon(self)
         self.tray_icon.setIcon(self.icon)
-        self.tray_icon.setToolTip('elmoCut')
+        self.tray_icon.setToolTip('HarbCut')
         self.tray_icon.setContextMenu(tray_menu)
         self.tray_icon.show()
         self.tray_icon.activated.connect(self.tray_clicked)
@@ -161,7 +173,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
             return True
         self.log('Connection lost!', 'red')
         if show_msg_box:
-            QMessageBox.critical(self, 'elmoCut', 'Connection Lost!')
+            QMessageBox.critical(self, 'HarbCut', 'Connection Lost!')
         return False
 
     def log(self, text, color='white'):
@@ -202,19 +214,19 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
 
     def tray_clicked(self, event):
         """
-        Show elmoCut when tray icon is left-clicked
+        Show HarbCut when tray icon is left-clicked
         """
         if event == QSystemTrayIcon.ActivationReason.Trigger:
             self.trayShowClicked()
 
     def sync_ip_forwarding_state(self):
         """
-        Detect if IP forwarding was changed manually outside elmoCut
+        Detect if IP forwarding was changed manually outside HarbCut
         (e.g. via netsh or the registry directly) and reconcile our
         stored setting + UI checkbox + in-memory flag to match reality.
         """
-        from networking.diverter import ElmoDivert
-        actual = ElmoDivert.is_ip_forwarding_enabled(self.scanner.iface.name)
+        from networking.diverter import HarbDivert
+        actual = HarbDivert.is_ip_forwarding_enabled(self.scanner.iface.name)
         stored = get_settings('ip_forwarding')
 
         self.ip_forwarding_enabled = actual
@@ -225,7 +237,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
 
             self.log(
                 f"IP forwarding was {'enabled' if actual else 'disabled'} "
-                "outside elmoCut — settings updated to match.",
+                "outside HarbCut — settings updated to match.",
                 'yellow'
             )
 
@@ -251,7 +263,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
     def stop_all_watching(self):
         """
         Stop every active URL-watching session.
-        Only ever called when elmoCut itself is closing.
+        Only ever called when HarbCut itself is closing.
         """
         for mac, divert in list(self.watched_devices.items()):
             divert.stop()
@@ -273,7 +285,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         ) == Buttons.NO:
             return False
 
-        ElmoDivert.enable_ip_forwarding(self.scanner.iface.name)
+        HarbDivert.enable_ip_forwarding(self.scanner.iface.name)
         set_settings('ip_forwarding', True)
         self.ip_forwarding_enabled = True
         self.killer.unkill_all()
@@ -297,7 +309,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         ) == Buttons.NO:
             return False
 
-        ElmoDivert.disable_ip_forwarding(self.scanner.iface.name)
+        HarbDivert.disable_ip_forwarding(self.scanner.iface.name)
         set_settings('ip_forwarding', False)
         self.ip_forwarding_enabled = False
         self.stop_all_watching()
@@ -345,7 +357,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         QMessageBox.information(
             self,
             'Shutdown',
-            'elmoCut will exit completely.\n\n'
+            'HarbCut will exit completely.\n\n'
             'Enable minimized from settings\n'
             'to be able to run in background.'
         )
@@ -663,7 +675,7 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
         elif new_version != VERSION:
             if MsgType.INFO(
                 self,
-                'elmoCut Update Available',
+                'HarbCut Update Available',
                 'A new version is available.\n'
                 f'Do you want to download {new_version}?',
                 Buttons.YES | Buttons.NO
@@ -678,4 +690,4 @@ class ElmoCut(QMainWindow, Ui_MainWindow):
             )
     
     # Open BuyMeACoffee page
-    buymeacoffee = lambda self: goto('https://www.buymeacoffee.com/elmoiv')
+    buymeacoffee = lambda self: goto('https://www.buymeacoffee.com/a7medd7arbb2662')
