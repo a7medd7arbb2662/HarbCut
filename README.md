@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/a7medd7arbb2662/harbcut"><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/icon.png?raw=true" alt="HarbCut icon"></a>
+  <a href="https://github.com/a7medd7arbb2662/HarbCut"><img src="exe/icon.ico" alt="HarbCut icon" width="128" height="128"></a>
   <br>
   HarbCut
   <br>
@@ -8,21 +8,20 @@
 <h4 align="center">Eye candy ARP spoofer for Windows</h4>
 
 <p align=center>
-  <a target="_blank" href="https://github.com/a7medd7arbb2662/harbcut/releases/latest" title="Latest release">
-    <img src="https://img.shields.io/github/v/release/a7medd7arbb2662/harbcut">
+  <a target="_blank" href="https://github.com/a7medd7arbb2662/HarbCut/releases/latest" title="Latest release">
+    <img src="https://img.shields.io/github/v/release/a7medd7arbb2662/HarbCut">
   </a>
   <a target="_blank" href="https://sourceforge.net/projects/harbcut/files/stats/timeline" title="SourceForge Downloads">
     <img src="https://img.shields.io/sourceforge/dt/harbcut?label=SourceForge">
   </a>
-  <a target="_blank" href="https://github.com/a7medd7arbb2662/harbcut/releases/latest" title="GitHub Downloads">
-    <img src="https://img.shields.io/github/downloads/a7medd7arbb2662/harbcut/total.svg?label=GitHub">
+  <a target="_blank" href="https://github.com/a7medd7arbb2662/HarbCut/releases/latest" title="GitHub Downloads">
+    <img src="https://img.shields.io/github/downloads/a7medd7arbb2662/HarbCut/total.svg?label=GitHub">
   </a>
   <a target="_blank" href="LICENSE" title="License: MIT">
-    <img src="https://img.shields.io/github/license/a7medd7arbb2662/harbcut">
+    <img src="https://img.shields.io/github/license/a7medd7arbb2662/HarbCut">
   </a>
 </p>
 <p align=center>
-  
   <a href="https://sourceforge.net/projects/harbcut/" target="_blank">
     <img src="https://sourceforge.net/cdn/syndication/badge_img/3324963/oss-open-source-excellence-black?achievement=oss-open-source-excellence&r=https://sourceforge.net/p/harbcut/admin/files/badges/" alt="HarbCut - Eye candy ARP spoofer for Windows | SourceForge" style="width: 120px; height: 120px;" width="120" height="120" />
   </a>
@@ -30,31 +29,18 @@
   <a href="https://sourceforge.net/projects/harbcut/" target="_blank">
     <img src="https://sourceforge.net/cdn/syndication/badge_img/3324963/oss-community-leader-black?achievement=oss-community-choice&r=https://sourceforge.net/p/harbcut/admin/files/badges/" alt="HarbCut - Eye candy ARP spoofer for Windows | SourceForge" style="width: 120px; height: 120px;" width="120" height="120" />
   </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://sourceforge.net/projects/harbcut/" target="_blank">
-    <img src="https://sourceforge.net/cdn/syndication/badge_img/3324963/oss-community-choice-black?achievement=oss-community-choice&r=https://sourceforge.net/p/harbcut/admin/files/badges/" alt="HarbCut - Eye candy ARP spoofer for Windows | SourceForge" style="width: 120px; height: 120px;" width="120" height="120" />
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="https://sourceforge.net/projects/harbcut/" target="_blank">
-    <img src="https://sourceforge.net/cdn/syndication/badge_img/3324963/oss-sf-favorite-black?achievement=oss-sf-favorite&r=https://sourceforge.net/p/harbcut/admin/files/badges/" alt="HarbCut - Eye candy ARP spoofer for Windows | SourceForge" style="width: 120px; height: 120px;" width="120" height="120" />
-  </a>
 </p>
 
-
-<hr>
-<p align="center">
+<p align=center>
   <a href="#disclaimer">Disclaimer</a> &bull;
   <a href="#screenshots">Screenshots</a> &bull;
   <a href="#description">Description</a> &bull;
-  <a href="#features">Features</a> &bull;
-  <a href="#limitations">Limitations</a> &bull;
   <a href="#download">Download</a> &bull;
   <a href="#requirements">Requirements</a> &bull;
   <a href="#manual">Manual</a> &bull;
   <a href="#run-from-source">Run From Source</a> &bull;
   <a href="#build-from-source">Build From Source</a> &bull;
   <a href="#todo">TODO</a> &bull;
-  <a href="#contribution">Contribution</a> &bull;
   <a href="#license">License</a>
 </p>
 <hr>
@@ -72,7 +58,7 @@
   </tr>
   <tr>
     <th colspan="3">
-      <img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/preview.png?raw=true" alt="Settings window">
+      <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/data/preview.png?raw=true" alt="Main window">
     </th>
   </tr>
   <tr>
@@ -88,143 +74,94 @@
   </tr>
   <tr>
     <th>
-      <img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/preview-settings.png?raw=true" alt="Settings window">
+      <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/data/preview-settings.png?raw=true" alt="Settings window">
     </th>
     <th>
-      <img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/preview-tray.png?raw=true" alt="Tray icon">
+      <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/data/preview-tray.png?raw=true" alt="Tray icon">
     </th>
     <th>
-      <img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/preview-tray-menu.png?raw=true" alt="Tray icon menu">
+      <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/data/preview-tray-menu.png?raw=true" alt="Tray icon menu">
     </th>
   </tr>
 </table>
 
 ## Description
-HarbCut aims to make arp spoofing easy for all users with all the hard work done under the hood.
+HarbCut aims to make ARP spoofing easy for all users with all the hard work done under the hood.
 
-One of it's main features is to use as low CPU and RAM usage as possible while offering nearly the same results as other closed source spoofers.
+One of its main features is the ability to selectively block devices from accessing the internet while keeping the network connection alive for the attacker. It supports both ARP spoofing and ICMP (ping) scanning methods.
 
+### Features
+- **ARP Spoofing** - Block/allow internet access for selected devices
+- **ARP Scan** - Fast device discovery on local network
+- **Ping Scan** - Alternative scanning method for isolated SSIDs/bands
+- **URL Watcher** - Monitor URLs visited by devices on the network
+- **Device Nicknames** - Custom names for recognized devices
+- **Network Interface Selection** - Choose which adapter to use
+- **System Tray Integration** - Minimize to tray, run in background
+- **Dark/Light Theme** - User preference
+- **Autostart** - Optional Windows startup registration
+- **Taskbar Progress** - Visual feedback during operations
 
-## Features
-- Clean UI.
-- Switch between available interfaces.
-- One click to block all devices.
-- Sniff the traffic of any device on the netwrok.
-- Re-kill devices that changed their ip during block.
-- Remember killed devices before exit.
-- Start with windows.
-- Run minimized in the background.
+### Screenshots Table
 
-## Limitations
-- ***Works only for Windows with English language (Temporary)***
-- Can only search for 255 devices (255.255.255.0 subnet masks)
-- Both scan types are manual.
+| Feature | Icon | Description | Notes |
+|---------|------|-------------|-------|
+| ARP Scan | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/scan_arp.png?raw=true" alt="ARP Scan" width="80px"> | Perform ARP Scan | Fast, low CPU, misses some devices |
+| Ping Scan | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/scan_hard.png?raw=true" alt="Ping Scan" width="80px"> | Perform Ping Scan | Slower than ARP but all devices are detected (HIGH CPU USAGE) |
+| Kill | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/kill.png?raw=true" alt="Kill" width="80px"> | Block selected device from internet | - |
+| Unkill | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/unkill.png?raw=true" alt="Unkill" width="80px"> | Allow blocked device internet access | - |
+| Kill All | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/killall.png?raw=true" alt="Kill All" width="80px"> | Block all connected devices | - |
+| Unkill All | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/unkillall.png?raw=true" alt="Unkill All" width="80px"> | Allow all blocked devices | - |
+| Settings | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/settings.png?raw=true" alt="Settings" width="80px"> | View HarbCut settings window | - |
+| About | <img src="https://github.com/a7medd7arbb2662/HarbCut/blob/main/assets/about.png?raw=true" alt="About" width="80px"> | View HarbCut about window | - |
 
 ## Download
-- GitHub:
-
-<a href="https://github.com/a7medd7arbb2662/harbcut/releases/latest"><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/data/download.png?raw=true" alt="download HarbCut" width=50></a>
-
-- SourceForge:
-
-[![Download harbcut](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/harbcut/files/latest/download)
-
+Download the latest release from [GitHub Releases](https://github.com/a7medd7arbb2662/HarbCut/releases/latest) or [SourceForge](https://sourceforge.net/projects/harbcut/files/).
 
 ## Requirements
-  - x64 Microsoft Windows >= 7
-  - .NET Framework 3+
-  - Visual C++ Redistributable Runtimes: [Download](https://www.techpowerup.com/download/visual-c-redistributable-runtime-package-all-in-one/)
-  - Npcap: [Download](https://nmap.org/npcap/dist/npcap-1.10.exe)
+- Windows 10/11 (64-bit)
+- **Administrator privileges** (required for ARP spoofing)
+- [Npcap](https://nmap.org/npcap/) installed (WinPcap API compatibility mode)
 
 ## Manual
-<table>
-  <tr>
-    <th><samp>Button</samp></th>
-    <th><samp>Description</samp></th>
-    <th><samp>Notes</samp></th>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/scan_easy.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>Perform ARP Scan</samp></td>
-    <td><samp>Fast but not all devices are detected</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/scan_hard.png?raw=true" alt="Ping Scan" width="80px"></td>
-    <td><samp>Perform Ping Scan</samp></td>
-    <td><samp>Slower than ARP but all devices are detected (HIGH CPU USAGE)</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/kill.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>Block the selected device from accessing internet</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/unkill.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>Allow the Blocked device to access internet</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/killall.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>Block all connected devices</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/unkillall.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>Allow all blocked devices</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/settings.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>View HarbCut settings window</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-  <tr>
-    <td><img src="https://github.com/a7medd7arbb2662/harbcut/blob/main/assets/about.png?raw=true" alt="ARP Scan" width="80px"></td>
-    <td><samp>view HarbCut about window</samp></td>
-    <td><samp>-</samp></td>
-  </tr>
-</table>
- 
+1. Install Npcap from [nmap.org/npcap](https://nmap.org/npcap/) (check "WinPcap API-compatible Mode")
+2. Download `HarbCut.exe` from releases
+3. **Right-click `HarbCut.exe` → "Run as administrator"**
+4. Select network interface from dropdown
+5. Click "Scan" to discover devices
+6. Select devices and click "Kill" to block internet
+7. Click "Unkill" to restore access
+
 ## Run From Source
- - Install requirements via pip: `pip install -r requirements.txt`
- - Ensure that `pyuic5` is in PATH
- - Click on `RUN.bat`
+- Install Python 3.11+
+- Install dependencies: `pip install -r requirements.txt`
+- Run: `python src/harbcut.py`
 
 ## Build From Source
- - **Required**:
-    - PyInstaller: `pip install pyinstaller`
-    - MinGW-w64 gcc compiler: [Download](https://netix.dl.sourceforge.net/project/mingw-w64/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe)
- - **Optionals**:
-    - UPX: [Download](https://github.com/upx/upx/releases/download/v3.96/upx-3.96-win64.zip)
-    - Inno Setup: [Download](https://files.jrsoftware.org/is/6/innosetup-6.0.3.exe)
+**Dependencies:**
+- Python 3.11+ (with `pyinstaller`)
+- Qt6 (PyQt6)
+- Npcap SDK
 
 ***Make sure that all of the above are in PATH in order to build HarbCut without issues***
 
-Now run: `BUILD.bat`
-
+Now run: `python build.py`
 
 ## TODO
-* [ ] Work properly on any Windows language.
-* [ ] Control download and upload limit of connected devices.
-* [ ] Protect HarbCut user from other spoofers.
-* [x] ***Select between available interfaces.***
-* [x] ***Dump traffic from any device.***
-* [ ] Background live connection checker.
-* [ ] Background live devices discovery.
-* [ ] Extend scan for all subnet masks.
+- [ ] Work properly on any Windows language.
+- [ ] Control download and upload limit of connected devices.
+- [ ] Protect HarbCut user from other spoofers.
+- [x] Select between available interfaces.
+- [x] Dump traffic from any device.
+- [ ] Background live connection checker.
+- [ ] Background live devices discovery.
+- [ ] Extend scan for all subnet masks.
 
 ## Donation
-If you find this project helpful, you can give me a cup of coffee :) 
+If you find this project helpful, you can give me a cup of coffee :)
 
 <a href="https://www.buymeacoffee.com/a7medd7arbb2662" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>&nbsp;&nbsp;<a href="https://www.paypal.me/a7medd7arbb2662" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Donate via PayPal" height="41" width="174"></a>
 
-## Contribution
-Please contribute! If you want to fix a bug, suggest improvements, or add new features to the project, just [open an issue](https://github.com/a7medd7arbb2662/harbcut/issues) or send me a pull request.
-
-## Stargazers over time
-[![Stargazers over time](https://starchart.cc/a7medd7arbb2662/harbcut.svg)](https://starchart.cc/a7medd7arbb2662/harbcut)
-
-
 ## License
-[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)  
-HarbCut is Free Software: You can use, study share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+[![GNU GPLv3 Image](https://www.gnu.org/graphics/gplv3-127x51.png)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+HarbCut is Free Software: You can use, study, share and improve it at your will. Specifically you can redistribute and/or modify it under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.html) as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
