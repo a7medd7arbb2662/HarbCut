@@ -2,7 +2,7 @@ import time
 import threading
 import subprocess
 from scapy.all import ARP, Ether, sendp, IP, DNS, DNSQR, TCP, sniff
-from tools.utils import threaded
+from hctools.utils import threaded
 from subprocess import CREATE_NO_WINDOW, STARTUPINFO, STARTF_USESHOWWINDOW, SW_HIDE
 
 def _no_window_kwargs():
@@ -11,7 +11,7 @@ def _no_window_kwargs():
     si.wShowWindow = SW_HIDE
     return {'startupinfo': si, 'creationflags': CREATE_NO_WINDOW}
 
-class ElmoDivert:
+class HarbDivert:
     def __init__(
         self,
         victim_ip: str,
@@ -113,7 +113,7 @@ class ElmoDivert:
 
         # Verify
         time.sleep(0.5)
-        if ElmoDivert.is_ip_forwarding_enabled(interface):
+        if HarbDivert.is_ip_forwarding_enabled(interface):
             print("IP forwarding appears to be enabled.")
         else:
             print("IP forwarding may still need a system reboot to take effect.")
@@ -302,7 +302,7 @@ class ElmoDivert:
     #                             pass
 
     #                     if hostname and self.callback and not self.kill_device:
-    #                         print(f"[ElmoDivert] {protocol} → {hostname}")
+    #                         print(f"[HarbDivert] {protocol} → {hostname}")
     #                         self.callback(hostname, protocol)
 
     #                     if self.divert_sleep > 0:
@@ -361,7 +361,7 @@ class ElmoDivert:
                     pass
 
             if hostname and self.callback:
-                print(f"[ElmoDivert] {protocol} → {hostname}")
+                print(f"[HarbDivert] {protocol} → {hostname}")
                 self.callback(hostname, protocol)
 
         try:
@@ -383,8 +383,8 @@ class ElmoDivert:
             return
 
         self._stop_event.clear()
-        if not ElmoDivert.is_ip_forwarding_enabled(self.interface):
-            ElmoDivert.enable_ip_forwarding(self.interface)
+        if not HarbDivert.is_ip_forwarding_enabled(self.interface):
+            HarbDivert.enable_ip_forwarding(self.interface)
 
         self._spoof_thread = threading.Thread(target=self._arp_spoof_worker, daemon=True)
         self._capture_thread = threading.Thread(target=self._capture_worker, daemon=True)
@@ -393,13 +393,13 @@ class ElmoDivert:
         self._capture_thread.start()
 
         self._running = True
-        print("ElmoDivert started.")
+        print("HarbDivert started.")
 
     @threaded
     def stop(self):
         if not self._running:
             return
-        print("Stopping ElmoDivert...")
+        print("Stopping HarbDivert...")
         self._stop_event.set()
 
         if self._capture_thread and self._capture_thread.is_alive():
@@ -408,7 +408,7 @@ class ElmoDivert:
             self._spoof_thread.join(timeout=3)
 
         self._running = False
-        print("ElmoDivert stopped.")
+        print("HarbDivert stopped.")
         if self.callback:
             try:
                 self.callback(None, None)
@@ -419,10 +419,10 @@ class ElmoDivert:
         return self._running
     
 # def hostname_callback(hostname: str, protocol: str):
-#     print(f"[ElmoDivert] {protocol} → {hostname}")
+#     print(f"[HarbDivert] {protocol} → {hostname}")
 
 # # Create instance
-# divert = ElmoDivert(
+# divert = HarbDivert(
 #     victim_ip="192.168.1.8",
 #     gateway_ip="192.168.1.1",
 #     interface="Wi-Fi",
@@ -433,7 +433,7 @@ class ElmoDivert:
 # )
 
 # # Register once (as admin)
-# ElmoDivert.register_driver()
+# HarbDivert.register_driver()
 
 # # Start
 # divert.start()

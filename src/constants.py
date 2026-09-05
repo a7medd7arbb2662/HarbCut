@@ -2,11 +2,11 @@ from os import path, environ
 from models.device import Device
 from enums import DeviceType
 
-OLD_DOCUMENTS_PATH = path.join(environ['USERPROFILE'], 'Documents', 'elmocut')
-DOCUMENTS_PATH = path.join(environ['APPDATA'], 'elmocut')
+OLD_DOCUMENTS_PATH = path.join(environ['USERPROFILE'], 'Documents', 'harbcut')
+DOCUMENTS_PATH = path.join(environ['APPDATA'], 'harbcut')
 
-OLD_SETTINGS_PATH = path.join(OLD_DOCUMENTS_PATH, 'elmocut.json')
-SETTINGS_PATH = path.join(DOCUMENTS_PATH, 'elmocut.json')
+OLD_SETTINGS_PATH = path.join(OLD_DOCUMENTS_PATH, 'harbcut.json')
+SETTINGS_PATH = path.join(DOCUMENTS_PATH, 'harbcut.json')
 
 TABLE_HEADER_LABELS = ['IP Address', 'MAC Address', 'Vendor', 'Type', 'Nickname']
 
@@ -31,7 +31,7 @@ HKEY_AUTOSTART_PATH = 'SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run'
 
 SETTINGS_KEYS = ['dark', 'count', 'autostart', 'minimized', 'remember', 'killed', 'autoupdate', 'threads', 'iface', 'nicknames', 'ip_forwarding']
 
-SETTINGS_VALS = [True, 25, False, True, False, [], True, 12, '', {}, False]
+SETTINGS_VALS = [True, 25, False, False, False, [], True, 12, '', {}, False]
 
 # Terminal commands
 CMD_PING_DEVICE = 'ping -n 1 {}'.format

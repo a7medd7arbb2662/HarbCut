@@ -2,12 +2,12 @@ from concurrent.futures.thread import ThreadPoolExecutor
 from scapy.all import arping
 from time import sleep
 from networking.nicknames import Nicknames
-from tools.utils import *
+from hctools.utils import *
 from constants import *
 from models.device import Device
 from enums import DeviceType
 from scapy.all import sniff, DHCP, BOOTP, Ether
-from tools.utils import threaded, good_mac
+from hctools.utils import threaded, good_mac
 
 class Scanner():
     def __init__(self, _parent):

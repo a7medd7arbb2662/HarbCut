@@ -1,17 +1,17 @@
 from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtGui import QPalette, QColor
 from networking.nicknames import Nicknames
-from tools.qtools import  MsgType
+from hctools.qtools import  MsgType
 from ui.ui_device import Ui_MainWindow
 from PyQt6.QtWidgets import QTableWidgetItem
-from networking.diverter import ElmoDivert
+from networking.diverter import HarbDivert
 from models.device import Device
 from datetime import datetime
 
 class DeviceWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, elmocut, icon):
+    def __init__(self, harbcut, icon):
         super().__init__()
-        self.elmocut = elmocut
+        self.harbcut = harbcut
         self.device: Device = None
         self.current_row = -1
         self.__nicknames = Nicknames()
@@ -39,7 +39,7 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
         self.btnStopWatch.clicked.connect(self.stop_watching)
 
     def start_watching(self):
-        if self.device.mac in self.elmocut.killer.killed:
+        if self.device.mac in self.harbcut.killer.killed:
             MsgType.WARN(
                 self,
                 'Cannot Watch Device!',
@@ -47,17 +47,17 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
             )
             return  # Stop button stays disabled, nothing else changes
 
-        if not self.elmocut.ip_forwarding_enabled:
-            if not self.elmocut.request_enable_ip_forwarding():
+        if not self.harbcut.ip_forwarding_enabled:
+            if not self.harbcut.request_enable_ip_forwarding():
                 return
 
-        probe = ElmoDivert(
+        probe = HarbDivert(
             victim_ip=self.device.ip,
             victim_mac=self.device.mac,
-            gateway_ip=self.elmocut.scanner.router_ip,
-            router_mac=self.elmocut.scanner.router_mac,
-            my_mac=self.elmocut.scanner.my_mac,
-            interface=self.elmocut.scanner.iface.name
+            gateway_ip=self.harbcut.scanner.router_ip,
+            router_mac=self.harbcut.scanner.router_mac,
+            my_mac=self.harbcut.scanner.my_mac,
+            interface=self.harbcut.scanner.iface.name
         )
         if not probe.is_same_segment():
             MsgType.WARN(
@@ -71,28 +71,28 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
             )
             return
 
-        if self.device.mac in self.elmocut.watched_devices:
+        if self.device.mac in self.harbcut.watched_devices:
             print(f"[Warning] {self.device.ip} is already being watched.")
             return
         self.btnStopWatch.setEnabled(True)
         self.btnStartWatch.setEnabled(False)
-        # Create a fresh ElmoDivert instance for this window
-        divert = ElmoDivert(
+        # Create a fresh HarbDivert instance for this window
+        divert = HarbDivert(
             victim_ip=self.device.ip,
             victim_mac=self.device.mac,
-            gateway_ip=self.elmocut.scanner.router_ip,
-            router_mac=self.elmocut.scanner.router_mac,
-            my_mac=self.elmocut.scanner.my_mac,
-            interface=self.elmocut.scanner.iface.name,
+            gateway_ip=self.harbcut.scanner.router_ip,
+            router_mac=self.harbcut.scanner.router_mac,
+            my_mac=self.harbcut.scanner.my_mac,
+            interface=self.harbcut.scanner.iface.name,
             callback=self.on_device_watched
         )
 
-        self.elmocut.watched_devices[self.device.mac] = divert
+        self.harbcut.watched_devices[self.device.mac] = divert
         divert.start()
-        self.elmocut.showDevices()
+        self.harbcut.showDevices()
         self.hide()
         self.show()
-        # self.elmocut.refreshDeviceRow(self.device.mac)
+        # self.harbcut.refreshDeviceRow(self.device.mac)
     
     def on_device_watched(self, hostname, protocol):
         """
@@ -121,14 +121,14 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
 
     def stop_watching(self):
         self.btnStopWatch.setEnabled(False)
-        if self.device.mac in self.elmocut.watched_devices:
-            divert = self.elmocut.watched_devices[self.device.mac]
+        if self.device.mac in self.harbcut.watched_devices:
+            divert = self.harbcut.watched_devices[self.device.mac]
             divert.stop() 
-            del self.elmocut.watched_devices[self.device.mac]
-            self.elmocut.showDevices()
+            del self.harbcut.watched_devices[self.device.mac]
+            self.harbcut.showDevices()
     
     def load(self, device, current_row):
-        self.setWindowTitle(f'elmoCut - {device.name or device.ip} ({device.ip})')
+        self.setWindowTitle(f'HarbCut - {device.name or device.ip} ({device.ip})')
         self.lblIP.setText(device.ip)
         self.lblMAC.setText(device.mac)
         if device.name != '-':
@@ -138,7 +138,7 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
         self.current_row = current_row
         self.device = device
 
-        is_watching = device.mac in self.elmocut.watched_devices
+        is_watching = device.mac in self.harbcut.watched_devices
         self.btnStartWatch.setEnabled(not is_watching)          
         self.btnStopWatch.setEnabled(is_watching)               
 
@@ -163,20 +163,20 @@ class DeviceWindow(QMainWindow, Ui_MainWindow):
 
     def instantApplyChanges(self, name):
         self.device.name = name
-        self.elmocut.fillTableRow(self.current_row, self.device)
+        self.harbcut.fillTableRow(self.current_row, self.device)
         self.close()
 
     def showEvent(self, event):
         # self.tableUrlWatch.setRowCount(0)
         self.tableUrlWatch.scrollToTop()
-        self.setStyleSheet(self.elmocut.styleSheet())
+        self.setStyleSheet(self.harbcut.styleSheet())
         event.accept()
     
     def closeEvent(self, a0):
         """
         Closing the window just hides it — watching (if active) keeps
         running in the background. It only fully stops when the user
-        clicks 'Stop Watching', or when elmoCut itself closes.
+        clicks 'Stop Watching', or when HarbCut itself closes.
         """
         a0.ignore()
         self.hide()

@@ -2,15 +2,15 @@ from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtGui import QPixmap
 
 from ui.ui_about import Ui_MainWindow
-from tools.qtools import clickable
-from tools.utils import goto
+from hctools.qtools import clickable
+from hctools.utils import goto
 from assets import twitter_icon, linkedin_icon, github_icon, reddit_icon, app_icon
 from constants import VERSION
 
 class About(QMainWindow, Ui_MainWindow):
-    def __init__(self, elmocut, icon):
+    def __init__(self, harbcut, icon):
         super().__init__()
-        self.elmocut = elmocut
+        self.harbcut = harbcut
 
         # Setup UI
         self.icon = icon
@@ -30,11 +30,14 @@ class About(QMainWindow, Ui_MainWindow):
             clickable(lbl).connect(url)
             self.setImage(lbl, icon)
 
-        self.lblAppName.setText(f'elmoCut v{VERSION}')
-        self.lblMyName.setText('Khaled El-Morshedy')
-        self.lblNickName.setText('(elmoiv)')
+        self.lblAppName.setText(f'HarbCut v{VERSION}')
+        self.lblMyName.setText('Ahmed Harb')
+        self.lblNickName.setText('(a7medd7arbb2662)')
     
     def showEvent(self, event):
+        self.show()
+        self.setWindowState(Qt.WindowState.WindowNoState)
+        self.activateWindow()
         self.setStyleSheet(self.elmocut.styleSheet())
         event.accept()
     
@@ -44,7 +47,7 @@ class About(QMainWindow, Ui_MainWindow):
         label.setPixmap(pix)
 
     twitter    = lambda self: goto('https://twitter.com/___xpy___')
-    linkedin   = lambda self: goto('https://www.linkedin.com/in/elmoiv/')
-    github     = lambda self: goto('https://github.com/elmoiv')
-    reddit     = lambda self: goto('https://www.reddit.com/user/elmoiv')
-    github_app = lambda self: goto('https://github.com/elmoiv/elmocut')
+    linkedin   = lambda self: goto('https://www.linkedin.com/in/a7medd7arbb2662/')
+    github     = lambda self: goto('https://github.com/a7medd7arbb2662')
+    reddit     = lambda self: goto('https://www.reddit.com/user/a7medd7arbb2662')
+    github_app = lambda self: goto('https://github.com/a7medd7arbb2662/harbcut')

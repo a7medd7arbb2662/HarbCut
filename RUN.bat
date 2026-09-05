@@ -11,10 +11,10 @@ set "src=%cd%\src\"
 
 echo Updating UIs
 for %%f in ("%exe%\*.ui") do (
-    pyuic6 "%%f" -o "%src%\ui\%%~nf.py"
+    "C:\Users\a7med\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe" -m PyQt6.uic.pyuic "%%f" -o "%src%\ui\%%~nf.py"
 )
 
 echo Running script
-python "%src%elmocut.py"
+"C:\Users\a7med\AppData\Local\hermes\hermes-agent\venv\Scripts\python.exe" "%src%harbcut.py"
 
 pause

@@ -1,4 +1,4 @@
-from tools.utils_gui import get_settings, set_settings
+from hctools.utils_gui import get_settings, set_settings
 
 class Nicknames:
     def __init__(self):

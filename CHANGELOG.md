@@ -20,8 +20,8 @@
 ![image](https://user-images.githubusercontent.com/31712173/220607944-60737ae5-4e39-4758-8d54-b8682586667b.png)
 
 
-- #53 Settings directory changed to `%appdata%\elmocut`.
-- Fixed kill buttons not working when elmocut starts offline.
+- #53 Settings directory changed to `%appdata%\harbcut`.
+- Fixed kill buttons not working when harbcut starts offline.
 - Updated [manuf](https://github.com/coolbho3k/manuf) MAC vendors database.
 - Improved performance.
 
@@ -71,5 +71,5 @@
 - Fixed an adapter specific bug causing "connection lost".
 
 ## [1.0.0] - 2021-01-27
-- First version of elmoCut
+- First version of HarbCut
 - Compatible with 64 bit Windows only
